@@ -1,0 +1,29 @@
+{
+  "name": "voron-stealthburner-r2-interactive-manual",
+  "version": "0.1.0",
+  "description": "Interactive 3D assembly manual for the VORON Stealthburner toolhead and Clockwork 2.5 extruder, built from the official STEP. Independent community project, not affiliated with VORON Design.",
+  "scripts": {
+    "setup": "uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python cadquery-ocp==8.0.1.1.0",
+    "fetch-cad": "sh tools/fetch-cad.sh",
+    "step": "mkdir -p build/ph && .venv/bin/python tools/step/convert_ocp.py source/Stealthburner_CW2.5_Assembly.step build/assembly-main.json 0.1 0.4 && for f in source/printheads/*.step; do .venv/bin/python tools/step/convert_ocp.py $f build/ph/$(basename $f .step).json 0.1 0.4; done && node tools/step/merge.cjs",
+    "build:hardware": "node --max-old-space-size=8192 tools/simplify-hardware.cjs",
+    "build:data": "node --max-old-space-size=8192 tools/build-data.cjs",
+    "build:page": "node tools/build-page.cjs",
+    "build": "npm run build:hardware && npm run build:data && npm run build:page",
+    "build:all": "npm run step && npm run build",
+    "serve": "python3 -m http.server 8767 --directory dist"
+  },
+  "author": "Mairis Skuja (Iconic FAB)",
+  "license": "GPL-3.0-only",
+  "homepage": "https://iconic-fab.com/voron/stealthburner/r2/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mairisskuja/voron-stealthburner-r2-interactive-manual.git"
+  },
+  "bugs": "https://github.com/mairisskuja/voron-stealthburner-r2-interactive-manual/issues",
+  "type": "commonjs",
+  "private": true,
+  "devDependencies": {
+    "meshoptimizer": "1.2.0"
+  }
+}
