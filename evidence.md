@@ -28,4 +28,5 @@ Wires, the Omron probe and its 2 M3x30 SHCS, belts, the hotends other than the R
 
 - The extruder's motor plate, the cartridge's front part and the shroud body are the roots of the three sub-assemblies: everything rides on them, and each goes onto the carriage in one move in Mounting.
 - The built-in support in the main body's sensor slot is a separate solid in the CAD: it leaves on p.23.
+- Where the CAD places a piece visibly off its seat, the drawing corrects it with a part's `fix` (at most 3 mm, reason required, logged by the build). So far: the cable anchor's insert, moved 0.59 mm into its bore.
 - Steps with nothing to move (alignment checks, wiring, supports to remove) are shown with the parts involved highlighted, and point to the manual's diagrams.

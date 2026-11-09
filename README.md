@@ -53,6 +53,7 @@ npm run serve       # http://localhost:8767/
 
 | Path | What it is |
 | --- | --- |
+| `CHANGELOG.md` | What changed in each release |
 | `tools/catalog.cjs` | Shared helpers, the build options and the hotend list |
 | `tools/chapters/NN-*.cjs` | One module per chapter: parts, steps, text, manual page references |
 | `docs/transcripts/` | Page-by-page transcripts of the official manual, with "CAD vs manual" and "Not drawn" |

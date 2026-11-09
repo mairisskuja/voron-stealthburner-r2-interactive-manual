@@ -68,6 +68,20 @@ for (const p of parts) {
   }
 }
 console.log(`catalog: ${parts.length} parts from ${usedBy.size} of ${asm.instances.length} CAD instances`);
+// 2b. Corrections to the CAD: a part's `fix: {vec, why}` moves its instances by vec (mm), for a
+// piece the CAD places off its seat (e.g. an insert beside the hole it goes into). Kept small,
+// and the reason is required so every correction is written down.
+for (const p of parts.filter(p => p.fix)) {
+  const {vec, why} = p.fix;
+  if (!Array.isArray(vec) || vec.length !== 3 || !why) throw Error(`${p.id}: fix needs {vec: [dx, dy, dz], why}`);
+  if (Math.hypot(...vec) > 3) throw Error(`${p.id}: fix of ${Math.hypot(...vec).toFixed(2)} mm is too large for a correction`);
+  for (const i of p.inst) {
+    const inst = asm.instances[i];
+    inst.matrix = inst.matrix.slice(); [3, 7, 11].forEach((k, j) => { inst.matrix[k] += vec[j]; });
+    inst.bbox = inst.bbox.map(c => c.map((v, j) => v + vec[j]));
+  }
+  console.log(`fix: ${p.id} moved ${vec.join(', ')} mm (${why})`);
+}
 
 // 3. Fastener axes. Axis-aligned parts show two equal box sides; others use PCA.
 function axisOf(P) {

@@ -18,7 +18,7 @@ How the chapters of the VORON Stealthburner R2 interactive manual are written an
 | --- | --- |
 | `pick(re, n)` | Instance indices whose `path.join('/')` matches `re`; throws unless exactly `n` |
 | `near(re, points)` / `at(re, point)` | The unused instance of `re` nearest each point (within 1 mm) |
-| `add(id, name, inst, kind, extra)` | One part, possibly several instances. `extra`: `parent`, `parents`, `when`, `note` |
+| `add(id, name, inst, kind, extra)` | One part, possibly several instances. `extra`: `parent`, `parents`, `when`, `note`, `fix: {vec, why}` (moves a piece the CAD places off its seat; at most 3 mm, recorded in the transcript) |
 | `each(prefix, name, list, kind, extra)` | One part per instance (hardware) |
 | `auto(ids, phase, gap)` | Movers along each fastener's own axis (bolts and inserts) |
 | `move(ids, [dx,dy,dz], phase, gap, start)` | Movers from a fixed offset in mm |

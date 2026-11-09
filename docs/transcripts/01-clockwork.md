@@ -212,6 +212,7 @@ Tips:
 | Manual | CAD | Shown |
 | --- | --- | --- |
 | p.11 "Which body?": collet body shown | Both bodies in the same place, each with a small second solid in the sensor slot | The body of the PTFE entry option; the second solid is the support removed on p.23 |
+| p.14 insert in the cable anchor | The insert sits on the motor plate's screw axis, 0.59 mm off the anchor's bore (x +0.50, z +0.31 mm; the anchor is placed slightly turned) | Moved into the bore (`fix` in `01-clockwork.cjs`); the M3x8 stays on the motor plate's hole |
 | p.12 motor plate inserts, count not stated | 6 inserts in the plate (+1 for the PCB, p.13) | 6 (+1) |
 | p.14 chain anchors (3-hole, 2-hole) | `cable_anchor_umbilical` with one insert, an M3x30 and an M3x20 in the same place | The umbilical anchor with the M3x30; the text names the chain anchors' M3x20 |
 | p.26 two M3x25, p.28 one M3x25 | M3x25 at upper left and lower right join body and plate; the one at the guidler's lower end is the pivot | As the CAD |

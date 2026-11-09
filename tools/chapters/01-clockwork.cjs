@@ -38,7 +38,9 @@ module.exports = ctx => {
   const pcbBodyIns = ins('cw-pcb-insert-body', [[11.4, 5.9, 94.1]], {...onBody, when: 'pcb'});
   const gaIns = ins('cw-guidler-insert', [[-10.2, 11.5, 92.3]], {parent: ga});
   const shuttleIns = ins('cw-shuttle-insert', [[-11.6, 9.3, 107.9]], {parent: shuttle});
-  const anchorIns = each('cw-anchor-insert', 'M3 heat set insert', pick(R('CW2\\.5_Cable_Chain_Anchors_Hardware:1/M3 Threaded Insert'), 1), 'insert', {parent: anchor});
+  // The CAD places this insert 0.59 mm off the anchor's bore (it sits on the motor plate's screw
+  // axis; the anchor is placed slightly turned). Drawn centred in the bore.
+  const anchorIns = each('cw-anchor-insert', 'M3 heat set insert', pick(R('CW2\\.5_Cable_Chain_Anchors_Hardware:1/M3 Threaded Insert'), 1), 'insert', {parent: anchor, fix: {vec: [0.498, 0, 0.31], why: 'centred in the cable anchor bore'}});
 
   // ---------- drive and idler ----------
   const shaft = add('cw-shaft', 'Gear shaft (50T)', pick(BMG('Driveshaft Assembly.*/Shaft-assembly'), 2), 'motion', {parent: plate, note: 'BMG gear shaft with its 50-tooth gear'});
